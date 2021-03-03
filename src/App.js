@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 
 class App extends Component {
   render() {
-    // jsx は Face Book 作
-    return <h1> Hello World </h1>;
-  }
+      return (
+          <>
+              <label>label</label>
+              <input type="text" onChange={() => {alert("test")}}/>
+          </>
+          );
+  };
 }
 
 export default App;
