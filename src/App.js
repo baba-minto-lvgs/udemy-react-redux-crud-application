@@ -1,32 +1,29 @@
-// import React, { Component } from 'react';
-
-// class App extends Component {
-//   render() {
-//       return (
-//           <>
-//               <label>label</label>
-//               <input type="text" onChange={() => {alert("test")}}/>
-//           </>
-//           );
-//   };
-// }
+import React, { Component } from 'react';
 
 const App = () => {
+    const profiles = [
+        {name: "Taro", age: 10},
+        {name: "Hanako", age: 5},
+        {name: "noname"}
+    ];
+
     return (
         <div>
-            <Cat/>
-            <Cat/>
-            <Cat/>
-            <Cat/>
+            {profiles.map((profile, index) => {
+                return <User key={index} name={profile.name} age={profile.age}/>
+            })}
         </div>
-
-
         )
 
 };
 
-const Cat = () => {
-    return <div>Meow!</div>
+const User = (props) => {
+    const {name, age} = props;
+    return <div>Hi, I am {name}! I am {age} years old</div>
+};
+
+User.defaultProps = {
+    age : 1
 };
 
 export default App;
