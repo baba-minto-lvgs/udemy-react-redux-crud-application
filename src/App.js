@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-const App = () => {
-    const profiles = [
-        {name: "Taro", age: 10},
-        {name: "Hanako", age: 5},
-        {name: "Noname", age: 3}
-    ];
+// state はコンポーネント内で使う
+const App = () => {return (<Counter></Counter>)};
 
-    return (
-        <div>
-            {profiles.map((profile, index) => {
-                return <User key={index} name={profile.name} age={profile.age}/>
-            })}
-        </div>
+class Counter extends Component {
+
+    // Component の初期化 コンストラクタはpropsを引数で受け取る
+    constructor(props){
+        super(props)
+        console.log(this.state);
+        this.state = {count: 0}
+    }
+
+    // プラスボタン押下時
+    hondlePlusButton = () => {
+        // setStateはデフォの機能 setStateが実行されるとrenderも実行される
+        this.setState({count: this.state.count + 1})
+    }
+
+    // マイナスボタン押下時
+    hondleMinusButton = () => {
+        this.setState({count: this.state.count - 1})
+    }
+
+
+    render() {
+        return(
+            <React.Fragment>
+            <div>count: {this.state.count}</div>
+            <button onClick={this.hondlePlusButton}>+1</button>
+            <button onClick={this.hondleMinusButton}>-1</button>
+            </React.Fragment>
         )
+    }
+}
 
-};
-
-const User = (props) => {
-    const {name, age} = props;
-    return <div>Hi, I am {name}! I am {age} years old</div>
-};
-
-User.propTypes = {
-    name: PropTypes.string,
-    age: PropTypes.number.isRequired
-};
 
 export default App;
